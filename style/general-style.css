@@ -1,0 +1,22 @@
+body* {
+  margin: 0px;
+  padding: 0px;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  background-color: #111;
+  color: #DDD;
+  text-align: center;
+}
+
+#cr-stage{
+	margin: auto;
+	/*cursor: none;*/
+}
+
+
+
