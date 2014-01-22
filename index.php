@@ -3,10 +3,31 @@
 <head>
   <meta charset="utf-8">
 
-  <script src="lib/melonJS-0.9.11.js"></script>
-  <script src="scr/commons.js"></script>
-  <script src="scr/components.js"></script>
-  <script src="scr/game.js"></script>
+  <!-- JQuery Library -->
+  <!-- <script type="text/javascript" src="lib/jquery.min.1.10.2.js"></script> -->
+  
+  <!-- melonJS Library -->
+  <script type="text/javascript" src="lib/melonJS-0.9.11.js"></script>
+  <!-- <script type="text/javascript" src="lib/melonJS-0.9.11-min.js"></script> -->
+
+  <!-- Plugin(s) -->
+  <!-- <script type="text/javascript" src="lib/plugins/debugPanel.js"></script> -->
+
+  <!-- Game Scripts -->
+  <script type="text/javascript" src="scr/commons.js"></script>
+  <script type="text/javascript" src="scr/game.js"></script>
+  <!-- <script type="text/javascript" src="scr/resources.js"></script> -->
+
+  <!-- <script type="text/javascript" src="scr/entities/entities.js"></script> -->
+  <!-- <script type="text/javascript" src="scr/entities/HUD.js"></script> -->
+
+  <!-- <script type="text/javascript" src="scr/screens/title.js"></script> -->
+  <!-- <script type="text/javascript" src="scr/screens/play.js"></script> -->
+
+
+
+
+
 
   <link  href="style/general-style.css" rel="stylesheet">
   
@@ -15,7 +36,7 @@
   <![endif]->
 
 </head>
-<body>
+<body onload="game.onload();">
 
   <h2>MelonJS's Example</h2>
   
@@ -25,6 +46,7 @@
   
 
   <p class="controls">Controls: Use W, A, S, and D or arrow keys to move around.</p>
+
 
 
 </body>
