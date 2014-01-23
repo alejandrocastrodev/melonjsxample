@@ -13,9 +13,12 @@ body {
   text-align: center;
 }
 
-#cr-stage{
-	margin: auto;
-	/*cursor: none;*/
+
+
+#MelonJSxample{	
+  display: inline-block;
+  background-color: #555;  
+  margin: auto;
 }
 
 

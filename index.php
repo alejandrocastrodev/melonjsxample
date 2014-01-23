@@ -24,11 +24,6 @@
   <!-- <script type="text/javascript" src="scr/screens/title.js"></script> -->
   <!-- <script type="text/javascript" src="scr/screens/play.js"></script> -->
 
-
-
-
-
-
   <link  href="style/general-style.css" rel="stylesheet">
   
   <!-[if lt IE 9]>
@@ -36,11 +31,11 @@
   <![endif]->
 
 </head>
-<body onload="game.onload();">
+<body> 
+<!-- onload="game.onload();" --> 
 
   <h2>MelonJS's Example</h2>
-  
-  <div id="MelonJSxample"></div>
+  <div id="MelonJSxample"></div>  	
 
   <p>It is a simple example of MelonJS game framework.</p>
   
