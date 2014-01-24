@@ -5,24 +5,19 @@ window.onReady(function() {
 
 var game = {
  
-    /**
-     * an object where to store game global data
-     */
+    /* an object where to store game global data */
     data : {
-        // score
         score : 0
     },
      
     // Run on page load.
-    onload : function () {
-        
+    onload : function () {        
         
         // Initialize the video.
         if (!me.video.init("MelonJSxample", 800, 800, true, 'auto')) {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
-        
 
         // Initialize the audio.
         me.audio.init("mp3,ogg");
@@ -31,7 +26,7 @@ var game = {
         me.loader.onload = this.loaded.bind(this);
 
         // Load the resources.
-        me.loader.preload(	game.resources);
+        me.loader.preload(game.resources);
 
         // Initialize melonJS and display a loading screen.
         me.state.change(me.state.LOADING);
@@ -42,21 +37,20 @@ var game = {
  
     // Run on game resources loaded.
     loaded : function () {
-        //me.state.set(me.state.MENU, new game.TitleScreen());
+        me.state.set(me.state.MENU, new game.TitleScreen());
         me.state.set(me.state.PLAY, new game.PlayScreen());
         
         // add our player entity in the entity pool
         me.entityPool.add("mainPlayer", game.PlayerEntity);
         
-        console.log('load player');
         // Start the game. 
         me.state.change(me.state.PLAY);
+        
     }
     
     
 };
 
-game.resources = [];
 
 game.PlayScreen = me.ScreenObject.extend({
     /**
@@ -65,38 +59,38 @@ game.PlayScreen = me.ScreenObject.extend({
     onResetEvent: function() { 
      
         // load a level
-        //me.levelDirector.loadLevel("area01");
-         
+        me.levelDirector.loadLevel("area01");
+        
         // reset the score
         game.data.score = 0;
-         
+        
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
-        me.game.world.addChild(new game.PlayerEntity());
-        
-         
-    },
+        me.game.world.addChild( me.entityPool.newInstanceOf("mainPlayer"));       
+    },     
      
-     
-    /**
-     *  action to perform when leaving this screen (state change)
-     */
+    /* action to perform when leaving this screen (state change) */
     onDestroyEvent: function() {
         // remove the HUD from the game world
         me.game.world.removeChild(this.HUD);
+        
+		console.log('destroy');
     }
 });
 
 game.PlayerEntity = me.ObjectEntity.extend(
-{	
+{
   
     /* constructor */
 	
 	init:function (x, y, settings)
 	{
 		// call the constructor
-		this.parent(x, y , settings);
+		
+		//TODO wrap no-set settings
+		
+		this.parent(x, y , {width: 30, height: 50});
 		
 		// set the default horizontal & vertical speed (accel vector)
 		this.setVelocity(3, 15);
@@ -111,12 +105,15 @@ game.PlayerEntity = me.ObjectEntity.extend(
 		
 	},
 
-	/* -----
-
-		update the player pos
-		
-	  ------			*/
+	/* update the player pos */		
 	update : function (){
+		
+		console.log('update');
+		return true;
+		
+	},
+	
+	draw : function(context){
 		
 	}
 });
@@ -191,4 +188,21 @@ game.HUD.ScoreItem = me.Renderable.extend({
 		// draw it baby !
 	}
 
+});
+
+game.TitleScreen = me.ScreenObject.extend({
+	/**	
+	 *  action to perform on state change
+	 */
+	onResetEvent: function() {	
+      ; // TODO
+	},
+	
+	
+	/**	
+	 *  action to perform when leaving this screen (state change)
+	 */
+	onDestroyEvent: function() {
+	  ; // TODO
+	}
 });

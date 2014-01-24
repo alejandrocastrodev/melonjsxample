@@ -16,7 +16,7 @@
   <!-- Game Scripts -->
   <script type="text/javascript" src="scr/commons.js"></script>
   <script type="text/javascript" src="scr/game.js"></script>
-  <!-- <script type="text/javascript" src="scr/resources.js"></script> -->
+  <script type="text/javascript" src="scr/resources.js"></script>
 
   <!-- <script type="text/javascript" src="scr/entities/entities.js"></script> -->
   <!-- <script type="text/javascript" src="scr/entities/HUD.js"></script> -->
