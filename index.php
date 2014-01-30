@@ -18,11 +18,14 @@
   <script type="text/javascript" src="scr/game.js"></script>
   <script type="text/javascript" src="scr/resources.js"></script>
 
-  <!-- <script type="text/javascript" src="scr/entities/entities.js"></script> -->
-  <!-- <script type="text/javascript" src="scr/entities/HUD.js"></script> -->
+  <script type="text/javascript" src="scr/entities/player.js"></script>
+  <script type="text/javascript" src="scr/entities/HUD.js"></script>
 
-  <!-- <script type="text/javascript" src="scr/screens/title.js"></script> -->
-  <!-- <script type="text/javascript" src="scr/screens/play.js"></script> -->
+  <script type="text/javascript" src="scr/screens/title.js"></script>
+  <script type="text/javascript" src="scr/screens/play.js"></script>  
+  
+  <script type="text/javascript" src="scr/components/keybinder.js"></script>
+  <script type="text/javascript" src="scr/components/imovecontroller.js"></script>
 
   <link  href="style/general-style.css" rel="stylesheet">
  
@@ -32,7 +35,6 @@
 
 </head>
 <body> 
-<!-- onload="game.onload();" --> 
 
   <h2>MelonJS's Example</h2>
   <div id="MelonJSxample"></div>  	
