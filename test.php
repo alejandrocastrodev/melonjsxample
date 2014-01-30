@@ -17,11 +17,9 @@
   <!-- Game Scripts -->
   <script type="text/javascript" src="scr/test/test.js"></script>
   
- 
-  
-  <!-[if lt IE 9]>
+  <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]->
+  <![endif]-->
 
 </head>
 <body> 

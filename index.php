@@ -25,10 +25,10 @@
   <!-- <script type="text/javascript" src="scr/screens/play.js"></script> -->
 
   <link  href="style/general-style.css" rel="stylesheet">
-  
-  <!-[if lt IE 9]>
+ 
+  <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]->
+  <![endif]-->
 
 </head>
 <body> 
@@ -42,7 +42,7 @@
 
   <p class="controls">Controls: Use W, A, S, and D or arrow keys to move around.</p>
 
-
+  <input type="button" value="iniciar" onclick="javascript:game.onload();" />
 
 </body>
 </html>
