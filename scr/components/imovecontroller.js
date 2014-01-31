@@ -17,7 +17,7 @@ game.IMoveController = Object.extend({
 	},
 	horizontalStatic : function(){
 		console.log(' | - horizontal-static - not-implemeted');
-	},
+	}
 	
 });
 	

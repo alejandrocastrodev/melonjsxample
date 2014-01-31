@@ -17,8 +17,8 @@ body {
 
 #MelonJSxample{	
   display: inline-block;
-  background-color: #555;  
-  margin: auto;
+  background-color: green;  
+  margin: auto 0px;
 }
 
 

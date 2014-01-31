@@ -22,9 +22,13 @@ game.PlayScreen = me.ScreenObject.extend({
 		// add our HUD to the game world
 		//this.HUD = new game.HUD.Container();
 		//me.game.world.addChild(this.HUD);
-        new game.KeyBinder();
 		var player = me.entityPool.newInstanceOf('mainPlayer',10, 10);
-		var surface = new game.Background('red');
+		
+
+		var keybinder = new game.KeyBinder();
+		keybinder.addListener(new game.IMoveController());
+        
+		var surface = new game.Background('black');
 		
 		var entities = new me.ObjectContainer();
 		var backgrounds = new me.ObjectContainer();

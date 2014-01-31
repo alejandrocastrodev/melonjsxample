@@ -1,53 +1,81 @@
+
+//function to build a movement info array as object
+//dont move down
+
+
 game.KeyBinder = Object.extend({
+		
+	//movement : action [opposite , innercall, stopcall, keys]
+	
+
 	/* constructor */
-	
-	listener : [],
-	//movement : [key , inner-action , opposite-acction , inner-callback, stop-callback]
-	movements : ({
-			left :  [me.input.KEY.LEFT,  'left',  'right', 'toLeftState',   'verticalStatic'],
-			right : [me.input.KEY.RIGHT, 'right', 'left',  'toRighttState', 'verticalStatic'],
-			up :    [me.input.KEY.UP,    'up',    'down',  'toUpttState',   'horizontalStatic'],
-			down :  [me.input.KEY.DOWN,  'down',  'top',   'toDowntState',  'horizontalStatic']
-	}),
-	
 	init : function() {
-		
-		this.listener.push(new game.IMoveController());
-		
-		console.log('keys binded');
-		me.input.bindKey(me.input.KEY.LEFT,  "left");
-		me.input.bindKey(me.input.KEY.RIGHT, "right");
-		me.input.bindKey(me.input.KEY.UP,    "up");
-		me.input.bindKey(me.input.KEY.DOWN,  "down");		
-		
-		var resume_event = me.event.subscribe(me.event.KEYDOWN, (function (action) {
-	        if (action == "left") {
-	        	me.event.unsubscribe(resume_event);
-	        	if(me.input.isKeyPressed('right')){
-	        		
-	        	}
-	        	this.notify();
-	            console.log("left");
-	        }
-	    }).bind(this));
-		
+		this.movements = {
+			left  : this.build('right', 'toLeftState',  'horizontalStatic',   [me.input.KEY.LEFT , me.input.KEY.A]),
+			right : this.build('left',  'toRightState', 'horizontalStatic',   [me.input.KEY.RIGHT, me.input.KEY.D]),
+			up    : this.build('down',  'toUpState',    'verticalStatic',     [me.input.KEY.UP   , me.input.KEY.W]),
+			down  : this.build('up',    'toDownState',  'verticalStatic',     [me.input.KEY.DOWN , me.input.KEY.S])
+	    };
+
+		this.listeners = [];			
+				
 		for(movement in this.movements){
-			console.log(movement + ' binded successfully');			
+			this.bindKeys(movement, this.movements[movement].keys);
+			this.subscribeDownKey(movement, this.movements[movement]);	
 		}
-		
-		
 	},
 	
-	
-	connectKeyCall : function(action, callback){
+	addListener : function(listener){
+		this.listeners.push(listener);		
+	},
 		
+	bindKeys : function(action, keys){
+		keys.forEach(function(key){
+			me.input.bindKey(key,  action);
+		});
+	},	
+	
+	subscribeDownKey : function(action, movement){
+		var suscription = me.event.subscribe(me.event.KEYDOWN, (function (sys_action) {
+	        if (sys_action == action) {
+	        	me.event.unsubscribe(suscription);
+	        	this.subscribeUpKey(action, movement);
+	        	this.notify(movement.innercall);
+	        }
+	    }).bind(this));
+	},
+	
+	subscribeUpKey : function(action, movement){
+		var suscription = me.event.subscribe(me.event.KEYUP, (function (sys_action) {
+	        if (sys_action == action) {
+	        	me.event.unsubscribe(suscription);
+	        	this.subscribeDownKey(action, movement);
+	        	if(me.input.isKeyPressed(movement.opposite)){
+	        		this.notify(this.movements[movement.opposite].innercall);	        		
+	        	}
+	        	else{
+	        		this.notify(movement.stopcall);
+	        	}
+	        }
+	    }).bind(this));
 	},
 	
 
     notify : function(callback){
-    	this.listener.forEach(function(listener){
-    		console.log(listener);
+    	this.listeners.forEach(function(listener){
+    		listener[callback]();
     	});
-    }
+    },
+	
+	build : function(_opposite, _innercall, _stopcall, _keys){
+		return {
+			opposite: _opposite, 
+			innercall: _innercall, 
+			stopcall: _stopcall,
+			keys: _keys
+		};
+	}
 	
 });
+
+
