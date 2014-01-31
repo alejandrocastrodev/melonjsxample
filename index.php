@@ -26,6 +26,7 @@
   
   <script type="text/javascript" src="scr/components/keybinder.js"></script>
   <script type="text/javascript" src="scr/components/imovecontroller.js"></script>
+  <script type="text/javascript" src="scr/components/examovecontroller.js"></script>
 
   <link  href="style/general-style.css" rel="stylesheet">
  

@@ -26,7 +26,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		
 
 		var keybinder = new game.KeyBinder();
-		keybinder.addListener(new game.IMoveController());
+		var examovecontroller = new game.ExaMoveController();
+		player.setController(examovecontroller);
+		keybinder.addListener(examovecontroller);
         
 		var surface = new game.Background('black');
 		

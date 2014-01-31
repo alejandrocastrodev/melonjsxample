@@ -1,27 +1,69 @@
 game.ExaMoveController = Object.extend({
 	
-	init : function(_entity){
-		this.entity = _entity;
+	init : function(){
+		this.entity = {move : function(){ throw "the examovecontroller has no associated entity";}};
+		this.controller = this;
 		this.verticalState = this.states.verticalNowhere;
 		this.horizontalState = this.states.horizontalNowhere;
 	},
 	
 	octogonal : 1,
-	diagonal : 1.4142, // square root ( 1^2 + 1^2 )
-	
+	diagonal : 0.7071, // a^2 + a^2 = 1^2 ==> square root ( 1/2 )
+		
 	states : {
-		verticalUp        : new State(function(){}),
-		verticalDown      : new State(function(){}),
-		verticalNowhere   : new State(function(){}),
-		horizontalLeft    : new state.VerticalNowhere(this),
-		horizontalRight   : new state.VerticalNowhere(this),
-		horizontalNowhere : new state.VerticalNowhere(this)
+		verticalUp        : ({
+			update : function(_controller){
+				_controller.horizontalState.toUp(_controller);
+				}
+	    }),
+		verticalDown      : ({
+			update : function(_controller){
+				_controller.horizontalState.toDown(_controller);
+				}
+	    }),
+		verticalNowhere   : ({
+			update : function(_controller){
+				_controller.horizontalState.toNowhere(_controller);
+				}
+	    }),
+		horizontalLeft    : ({
+			toUp      : function(_controller){
+				_controller.entity.move(- _controller.diagonal, - _controller.diagonal);
+				},
+			toDown    : function(_controller){
+				_controller.entity.move(- _controller.diagonal, _controller.diagonal);
+				},
+			toNowhere : function(_controller){
+				_controller.entity.move(- _controller.octogonal, 0);
+				}
+	    }),
+		horizontalRight   : ({
+			toUp      : function(_controller){
+				_controller.entity.move(_controller.diagonal, - _controller.diagonal);
+				},
+			toDown    : function(_controller){
+				_controller.entity.move(_controller.diagonal, _controller.diagonal);
+				},
+			toNowhere : function(_controller){
+				_controller.entity.move(_controller.octogonal, 0);
+				}
+	    }),
+		horizontalNowhere : ({
+			toUp      : function(_controller){
+				_controller.entity.move(0 , - _controller.octogonal);
+				},
+			toDown    : function(_controller){
+				_controller.entity.move(0 , _controller.octogonal);
+				},
+			toNowhere : function(_controller){
+				//_controller.entity.move(0 , 0);
+				}
+	    })
 	},
 	
-	updateEntity : function(){
-		this.verticalState.updateEntity();
+	update : function(){
+		this.verticalState.update(this.controller);
 	},
-	
 	
 	
 	toUpState : function(){

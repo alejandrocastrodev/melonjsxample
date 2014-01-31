@@ -22,23 +22,25 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		console.log('player init');
 
 	},
+	
+	setController : function(_controller){
+		this.controller = _controller;
+		_controller.entity = this;
+	},
+	
+	move : function(_x, _y){
+		this.pos.x += _x;
+		this.pos.y += _y;
+		//console.log(this.pos.x + ' - ' + this.pos.y);
+	},
 
-	/* update the player pos */
 	update : function() {
-		if (me.input.isKeyPressed('left')){
-		  this.pos.x --;
-		}
-		if (me.input.isKeyPressed('right')){
-			  this.pos.x ++;
-		}
+		this.controller.update();
 		return true;
 	},
 
 	draw : function(context) {
 		context.fillStyle = 'green';
 		context.fillRect(this.pos.x, this.pos.y, 10, 10);
-		// clear the screen
-		//me.video.clearSurface(context, "black");
-		//console.log('dibujando');
 	}
 });
