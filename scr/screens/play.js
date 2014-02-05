@@ -15,7 +15,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent : function() {
 
 		// load a level
-		//me.levelDirector.loadLevel("area01");
+		me.levelDirector.loadLevel("scene-001");
 
 		// reset the score
 		game.data.score = 0;
@@ -37,11 +37,12 @@ game.PlayScreen = me.ScreenObject.extend({
 		
 		
 		entities.addChild(player);
+		entities.z = 999;
 		//entities.addChild(aim);
 		backgrounds.addChild(surface);
 		
 		me.game.world.addChild(entities);
-		me.game.world.addChild(backgrounds);
+		//me.game.world.addChild(backgrounds);
 		me.game.sort();
 
 	},

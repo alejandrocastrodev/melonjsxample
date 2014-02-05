@@ -31,7 +31,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 	move : function(_x, _y){
 		this.pos.x += _x;
 		this.pos.y += _y;
-		//console.log(this.pos.x + ' - ' + this.pos.y);
+		//console.log(this.pos.x + ' - ' + this.pos.y + ' - ' + this.pos.z);
 	},
 
 	update : function() {

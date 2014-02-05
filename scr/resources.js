@@ -3,14 +3,14 @@ game.resources = [
 	 * Graphics.
 	 */
 	// our level tileset
-	{name: "area01_level_tiles",  type:"image",	src: "assets/image/area01_level_tiles.png"},
+	{name: "map",  type:"image",	src: "assets/image/map.png"},
 	
 	
-	{name: "metatiles32x32",      type:"image",	src: "assets/image/metatiles32x32.png"},
+	//{name: "metatiles32x32",      type:"image",	src: "assets/image/scene-001.tmx"},
 	/* 
 	 * Maps. 
  	 */
-	{name: "area01",              type: "tmx",	src: "assets/map/area01.tmx"}
+	{name: "scene-001",                 type: "tmx",	src: "assets/image/scene-001.tmx"}
 
 	/* 
 	 * Background music. 
