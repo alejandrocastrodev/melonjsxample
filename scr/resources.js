@@ -3,7 +3,8 @@ game.resources = [
 	 * Graphics.
 	 */
 	// our level tileset
-	{name: "map",  type:"image",	src: "assets/image/map.png"},
+	{name: "map",     type:"image",	src: "assets/image/map.png"},
+	{name: "player",  type:"image",	src: "assets/image/CE_Players2.png"},
 	
 	
 	//{name: "metatiles32x32",      type:"image",	src: "assets/image/scene-001.tmx"},
