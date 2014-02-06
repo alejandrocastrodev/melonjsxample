@@ -2,7 +2,7 @@
 game.PlayerEntity = me.ObjectEntity.extend({
 	/* constructor */
 	init : function(x, y, settings) {
-        // TODO wrap no-set settings
+        // TODO wrap set x and y settings
 		settings = settings || {};
 		settings.image = "player";
         settings.spritewidth = 32;
@@ -10,7 +10,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		settings.width = 30;
 		settings.height = 50;
 		
-		
+		this.spriteController = new game.SpriteController(this);
 		
 		// call the constructor
 		this.parent(x, y, settings);
