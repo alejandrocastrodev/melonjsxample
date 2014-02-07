@@ -1,8 +1,9 @@
 
 game.PlayerEntity = me.ObjectEntity.extend({
-	/* constructor */
+	
+
 	init : function(x, y, settings) {
-        // TODO wrap set x and y settings
+		
 		settings = settings || {};
 		settings.image = "player";
         settings.spritewidth = 32;
@@ -10,18 +11,19 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		settings.width = 30;
 		settings.height = 50;
 		
-		this.spriteController = new game.SpriteController(this);
 		
 		// call the constructor
 		this.parent(x, y, settings);
 		
+		// set controller for sprite animations
+		this.spriteController = new game.SpriteController(this);
 
 		// set the default horizontal & vertical speed (accel vector)
-		this.setVelocity(3, 15);
+		//this.setVelocity(3, 15);
 		
 		
 		this.renderable.addAnimation ("default",  [2, 3, 4, 5], 100);                   
-        this.renderable.setCurrentAnimation("default"); 
+        this.renderable.setCurrentAnimation("default");
 
 		// adjust the bounding box
 		this.updateColRect(8, 48, -1, 0);

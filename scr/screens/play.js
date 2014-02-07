@@ -3,7 +3,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	cache : {
 		counter : 0
 	},
-	
+
 	// constructor
 	init : function() {
 		// pass true to the parent constructor
@@ -48,11 +48,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	},
 
 	draw : function(context) {
-		// clear the screen
-		if(this.cache.counter < 120){
-			me.video.clearSurface.defer(context, "black");
-			//console.log('dibujando: ' + this.cache.counter ++);
-		}
+		
 	},
 
 	/* action to perform when leaving this screen (state change) */

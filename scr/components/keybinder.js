@@ -5,23 +5,24 @@
 
 game.KeyBinder = Object.extend({
 		
-	//movement : action [opposite , innercall, stopcall, keys]
 	
 
 	/* constructor */
 	init : function() {
+		
 		this.movements = {
+		    //movement : action [opposite , innercall, stopcall, keys]
 			left  : this.build('right', 'toLeftState',  'horizontalStatic',   [me.input.KEY.LEFT , me.input.KEY.A]),
 			right : this.build('left',  'toRightState', 'horizontalStatic',   [me.input.KEY.RIGHT, me.input.KEY.D]),
 			up    : this.build('down',  'toUpState',    'verticalStatic',     [me.input.KEY.UP   , me.input.KEY.W]),
 			down  : this.build('up',    'toDownState',  'verticalStatic',     [me.input.KEY.DOWN , me.input.KEY.S])
 	    };
 
-		this.listeners = [];			
+		this.listeners = [];
 				
 		for(movement in this.movements){
 			this.bindKeys(movement, this.movements[movement].keys);
-			this.subscribeDownKey(movement, this.movements[movement]);	
+			this.subscribeDownKey(movement, this.movements[movement]);
 		}
 	},
 	
