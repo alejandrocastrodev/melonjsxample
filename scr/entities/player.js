@@ -15,16 +15,20 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		// call the constructor
 		this.parent(x, y, settings);
 		
+		
+		this.renderable.addAnimation ("0",  [24, 25, 26, 27], 100); 
+		this.renderable.addAnimation ("1",  [40, 41, 42, 43], 100);      
+		this.renderable.addAnimation ("2",  [46, 47, 48, 49], 100);      
+		this.renderable.addAnimation ("3",  [62, 63, 64, 65], 100);      
+		this.renderable.addAnimation ("4",  [68, 69, 80, 81], 100);      
+		this.renderable.addAnimation ("5",  [84, 85, 86, 87], 100);      
+		this.renderable.addAnimation ("6",  [ 2,  3,  4,  5], 100);      
+		this.renderable.addAnimation ("7",  [ 8,  9, 20, 21], 100);                        
+        this.renderable.setCurrentAnimation("6");
+
 		// set controller for sprite animations
 		this.spriteController = new game.SpriteController(this);
-
-		// set the default horizontal & vertical speed (accel vector)
-		//this.setVelocity(3, 15);
 		
-		
-		this.renderable.addAnimation ("default",  [2, 3, 4, 5], 100);                   
-        this.renderable.setCurrentAnimation("default");
-
 		// adjust the bounding box
 		this.updateColRect(8, 48, -1, 0);
 
@@ -42,7 +46,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 	move : function(_x, _y){
 		this.pos.x += _x;
 		this.pos.y += _y;
-		//console.log(this.pos.x + ' - ' + this.pos.y + ' - ' + this.pos.z);
+		this.spriteController.notifyEntityPositionChange();
 	},
 
 	update : function() {

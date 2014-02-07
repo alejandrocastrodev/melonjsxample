@@ -8,7 +8,7 @@ game.ExaMoveController = Object.extend({
 	},
 	
 	octogonal : 1,
-	diagonal : 0.7071, // a^2 + a^2 = 1^2 ==> square root ( 1/2 )
+	diagonal : 0.7071, // x^2 + x^2 = 1^2 ==> square root ( 1/2 )
 		
 	states : {
 		verticalUp        : ({

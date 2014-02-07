@@ -1,13 +1,5 @@
-
-//function to build a movement info array as object
-//dont move down
-
-
 game.KeyBinder = Object.extend({
 		
-	
-
-	/* constructor */
 	init : function() {
 		
 		this.movements = {
@@ -52,7 +44,7 @@ game.KeyBinder = Object.extend({
 	        	me.event.unsubscribe(suscription);
 	        	this.subscribeDownKey(action, movement);
 	        	if(me.input.isKeyPressed(movement.opposite)){
-	        		this.notify(this.movements[movement.opposite].innercall);	        		
+	        		this.notify(this.movements[movement.opposite].innercall);		
 	        	}
 	        	else{
 	        		this.notify(movement.stopcall);
@@ -60,7 +52,6 @@ game.KeyBinder = Object.extend({
 	        }
 	    }).bind(this));
 	},
-	
 
     notify : function(callback){
     	this.listeners.forEach(function(listener){
