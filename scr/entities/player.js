@@ -8,8 +8,8 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		settings.image = "player";
         settings.spritewidth = 32;
         settings.spriteheight = 32;
-		settings.width = 30;
-		settings.height = 50;
+		settings.width = 32;
+		settings.height = 32;
 		
 		
 		// call the constructor

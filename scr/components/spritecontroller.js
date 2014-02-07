@@ -11,6 +11,8 @@ game.SpriteController = Object.extend({
 		this.middleHeight = _entity.height / 2;
 		
 		this.bindMouseMove();
+		
+		//this.testDirection();
 	},
 
 	bindMouseMove : function() {
@@ -19,24 +21,60 @@ game.SpriteController = Object.extend({
 	},
 
 	updateSprite : function(e) {
-		this.angle = 0.0;
-		this.dIndex = 6;
+		// for(prop in e){
+			// console.log(prop);
+		// }
 		
-		
-		this.deltaX = e.gameScreenX - this.entity.pos.x - this.middleWidth;
+		//set 'x' and 'y' delta between mouse and player's center
+		this.deltaX = e.gameScreenX - this.entity.pos.x - this.middleWidth;		
+		console.log("this.entity.pos.x:" + this.entity.pos.x);	
+		console.log("e.gameScreenX:" + e.gameX);
 		this.deltaY = e.gameScreenY - this.entity.pos.y - this.middleHeight;
+		console.log("this.entity.pos.y:" + this.entity.pos.y);
+		console.log("e.gameScreenY:" + e.gameY);
+		//this.getAngle();
 		
-		
-		
-		
-		this.angle = - Math.atan(this.deltaY / this.deltaX);
-
-		console.log("deltaX:" + this.deltaX);
-		console.log("deltaY:" + this.deltaY);
-		console.log("angle:" + this.angle);
 	},
-
-	fixSintax : 1,
+	
+	getAngle : function(){		
+		//this.angle = 0.0;
+		this.dIndex = 6;
+		this.angle = Math.atan(this.deltaY / this.deltaX);
+		if(this.deltaX < 0.0)	this.angle += Math.PI;
+		
+		
+		
+		console.log("angle:" + this.angle);
+		return this.angle;
+	},
+	
+	
+	testDirection : function(){
+		this.deltaX = 0; this.deltaY = -1;
+		console.log("[x  0 | y -1]  '' :"    + this.getAngle());
+		
+		this.deltaX = 1; this.deltaY = -1;
+		console.log("[x  1 | y -1]  >' :"    + this.getAngle());
+		
+		this.deltaX = 1; this.deltaY = 0;
+		console.log("[x  1 | y  0]  >> :"    + this.getAngle());
+		
+		this.deltaX = 1; this.deltaY = 1;
+		console.log("[x  1 | y  1]  >. :"    + this.getAngle());
+		
+		this.deltaX = 0; this.deltaY = 1;		
+		console.log("[x  0 | y  1]  .. :"    + this.getAngle());
+		
+		this.deltaX = -1; this.deltaY = 1;
+		console.log("[x -1 | y  1]  .< :"    + this.getAngle());
+		
+		this.deltaX = -1; this.deltaY = 0;
+		console.log("[x -1 | y  0]  << :"    + this.getAngle());
+		
+		this.deltaX = -1; this.deltaY = -1;
+		console.log("[x -1 | y -1]  '< :"    + this.getAngle());
+		
+	}
 
 });
 
