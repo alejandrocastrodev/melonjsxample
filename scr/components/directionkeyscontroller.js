@@ -1,4 +1,4 @@
-game.KeyBinder = Object.extend({
+game.DirectionKeysController = Object.extend({
 		
 	init : function() {
 		

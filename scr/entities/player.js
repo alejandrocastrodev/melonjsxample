@@ -48,6 +48,14 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		this.pos.y += _y;
 		this.spriteController.notifyEntityPositionChange();
 	},
+	
+	setMovingState : function(){
+		console.log("moving");
+	},
+	
+	setQuietState : function(){
+		console.log("quiet");
+	},
 
 	update : function() {
 		this.parent();

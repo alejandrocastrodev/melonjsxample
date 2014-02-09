@@ -22,28 +22,31 @@ game.PlayScreen = me.ScreenObject.extend({
 		// add our HUD to the game world
 		//this.HUD = new game.HUD.Container();
 		//me.game.world.addChild(this.HUD);
-		var player = me.entityPool.newInstanceOf('mainPlayer',10, 10);
 		
-
-		var keybinder = new game.KeyBinder();
 		var examovecontroller = new game.ExaMoveController();
+
+		var player = me.entityPool.newInstanceOf('mainPlayer',10, 10);
 		player.setController(examovecontroller);
-		keybinder.addListener(examovecontroller);
+		
+		var directionKeyController = new game.DirectionKeysController();
+		directionKeyController.addListener(examovecontroller);
         
-		var surface = new game.Background('black');
+		var blackBackground = new game.Background('black');
 		
 		var entities = new me.ObjectContainer();
-		var backgrounds = new me.ObjectContainer();
-		
-		
-		entities.addChild(player);
 		entities.z = 999;
+		entities.addChild(player);
 		//entities.addChild(aim);
-		backgrounds.addChild(surface);
+		
+		
+		var backgrounds = new me.ObjectContainer();
+		backgrounds.addChild(blackBackground);
+				
 		
 		me.game.world.addChild(entities);
-		//me.game.world.addChild(backgrounds);
-		me.game.sort();
+		me.game.world.addChild(backgrounds);
+		
+		//me.game.sort();
 
 	},
 

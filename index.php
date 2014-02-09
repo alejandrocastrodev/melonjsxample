@@ -24,10 +24,12 @@
   <script type="text/javascript" src="scr/screens/title.js"></script>
   <script type="text/javascript" src="scr/screens/play.js"></script>  
   
-  <script type="text/javascript" src="scr/components/keybinder.js"></script>
+  <script type="text/javascript" src="scr/components/directionkeyscontroller.js"></script>
   <script type="text/javascript" src="scr/components/imovecontroller.js"></script>
   <script type="text/javascript" src="scr/components/examovecontroller.js"></script>
   <script type="text/javascript" src="scr/components/spritecontroller.js"></script>
+  
+  <script type="text/javascript" src="scr/rendereables/background.js"></script>
 
   <link  href="style/general-style.css" rel="stylesheet">
  
@@ -46,7 +48,7 @@
 
   <p class="controls">Controls: Use W, A, S, and D or arrow keys to move around.</p>
 
-  <input type="button" value="iniciar" onclick="javascript:game.onload();" />
+  <!-- <input type="button" value="iniciar" onclick="javascript:game.onload();" /> -->
 
 </body>
 </html>
