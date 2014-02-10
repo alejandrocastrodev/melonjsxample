@@ -10,24 +10,31 @@ game.PlayerEntity = me.ObjectEntity.extend({
         settings.spriteheight = 32;
 		settings.width = 32;
 		settings.height = 32;
-		
-		
+
 		// call the constructor
 		this.parent(x, y, settings);
 		
+		var sprite, frame;
 		
-		this.renderable.addAnimation ("0",  [24, 25, 26, 27], 100); 
-		this.renderable.addAnimation ("1",  [40, 41, 42, 43], 100);      
-		this.renderable.addAnimation ("2",  [46, 47, 48, 49], 100);      
-		this.renderable.addAnimation ("3",  [62, 63, 64, 65], 100);      
-		this.renderable.addAnimation ("4",  [68, 69, 80, 81], 100);      
-		this.renderable.addAnimation ("5",  [84, 85, 86, 87], 100);      
-		this.renderable.addAnimation ("6",  [ 2,  3,  4,  5], 100);      
-		this.renderable.addAnimation ("7",  [ 8,  9, 20, 21], 100);                        
-        this.renderable.setCurrentAnimation("6");
+		for(sprite = 0; sprite < 8; sprite ++){
+			frame = sprite*10;
+			this.renderable.addAnimation (sprite + "-stop-kind",   this.range(frame    , 1), 100);
+			this.renderable.addAnimation (sprite + "-stop-shoot",  this.range(frame    , 2), 100);			
+			this.renderable.addAnimation (sprite + "-move-kind",   this.range(frame + 2, 4), 100);
+			this.renderable.addAnimation (sprite + "-move-shoot",  this.range(frame + 6, 4), 100);
+		}
+		
+		
+
+		this.direction = 0; // 0-7
+		this.moving = "stop"; // move
+		this.shooting = "kind"; // shoot
+		
+		this.updateState();			
 
 		// set controller for sprite animations
-		this.spriteController = new game.SpriteController(this);
+		this.spriteController = new game.DirectionSpriteController(this);
+		new game.ShootingSpriteController(this);
 		
 		// adjust the bounding box
 		this.updateColRect(8, 48, -1, 0);
@@ -38,9 +45,33 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
 	},
 	
-	setController : function(_controller){
-		this.controller = _controller;
-		_controller.entity = this;
+	range : function (start, amount) {
+	    var nrange = new Array(amount);
+	    for (var i = 0; i < amount; i++) {
+	    	nrange[i] = i + start;
+	    }
+	    return nrange;
+	    
+	},
+	
+	updateState : function(){
+		this.state = this.direction + "-" + this.moving +  "-" + this.shooting;
+        this.renderable.setCurrentAnimation(this.state);		
+	},
+	
+	startShooting : function(){
+		this.shooting = "shoot";
+		this.updateState();
+	},
+	
+	stopShooting : function(){
+		this.shooting = "kind";
+		this.updateState();
+	},
+	
+	setMoveController : function(_moveController){
+		this.moveController = _moveController;
+		_moveController.entity = this;
 	},
 	
 	move : function(_x, _y){
@@ -49,17 +80,24 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		this.spriteController.notifyEntityPositionChange();
 	},
 	
+	setDirection : function(_direction){
+		this.direction = _direction;
+		this.updateState();
+	},
+	
 	setMovingState : function(){
-		console.log("moving");
+		this.moving = "move";
+		this.updateState();
 	},
 	
 	setQuietState : function(){
-		console.log("quiet");
+		this.moving = "stop";
+		this.updateState();
 	},
 
 	update : function() {
 		this.parent();
-		this.controller.update();
+		this.moveController.update();
 		return true;
 	},
 

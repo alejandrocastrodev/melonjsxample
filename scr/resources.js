@@ -1,25 +1,11 @@
 game.resources = [
-	/**
-	 * Graphics.
-	 */
-	// our level tileset
+
 	{name: "map",     type:"image",	src: "assets/image/map.png"},
-	{name: "player",  type:"image",	src: "assets/image/CE_Players2.png"},
-	
-	
-	//{name: "metatiles32x32",      type:"image",	src: "assets/image/scene-001.tmx"},
-	/* 
-	 * Maps. 
- 	 */
+	{name: "player",  type:"image",	src: "assets/image/player.png"},
+		
 	{name: "scene-001",                 type: "tmx",	src: "assets/image/scene-001.tmx"}
 
-	/* 
-	 * Background music. 
-	 */
-	
-	/* 
-	 * Sound effects. 
-	 */
+
 ];
 
 

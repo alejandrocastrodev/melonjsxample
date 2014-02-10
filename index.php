@@ -23,11 +23,13 @@
 
   <script type="text/javascript" src="scr/screens/title.js"></script>
   <script type="text/javascript" src="scr/screens/play.js"></script>  
+  <script type="text/javascript" src="scr/screens/loader.js"></script>  
   
   <script type="text/javascript" src="scr/components/directionkeyscontroller.js"></script>
   <script type="text/javascript" src="scr/components/imovecontroller.js"></script>
   <script type="text/javascript" src="scr/components/examovecontroller.js"></script>
-  <script type="text/javascript" src="scr/components/spritecontroller.js"></script>
+  <script type="text/javascript" src="scr/components/directionspritecontroller.js"></script>
+  <script type="text/javascript" src="scr/components/shootingspritecontroller.js"></script>
   
   <script type="text/javascript" src="scr/rendereables/background.js"></script>
 
@@ -41,7 +43,7 @@
 <body> 
 
   <h2>MelonJS's Example</h2>
-  <div id="MelonJSxample"></div>  	
+  <div id="MelonJSxample" oncontextmenu="return false;"></div>  	
 
   <p>It is a simple example of MelonJS game framework.</p>
   

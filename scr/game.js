@@ -13,13 +13,16 @@ var game = {
 	onload : function() {
 
 		// Initialize the video.
-		if (!me.video.init("MelonJSxample", 400, 400, true, false, true)) {
+		if (!me.video.init("MelonJSxample", 600, 400, true, false, true)) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}
 
 		// Initialize the audio.
 		me.audio.init("mp3,ogg");
+		
+
+		me.state.set(me.state.LOADING, new game.CustomLoadingScreen());
 
 		// Set a callback to run when loading is complete.
 		me.loader.onload = this.loaded.bind(this);

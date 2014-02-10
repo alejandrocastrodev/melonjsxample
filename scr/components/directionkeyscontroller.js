@@ -28,6 +28,8 @@ game.DirectionKeysController = Object.extend({
 		});
 	},	
 	
+	//TODO avoid 'bind' for increase de performance
+	
 	subscribeDownKey : function(action, movement){
 		var suscription = me.event.subscribe(me.event.KEYDOWN, (function (sys_action) {
 	        if (sys_action == action) {

@@ -2,7 +2,7 @@
 const PID4 = Math.PI / 4;
 const PID8 = Math.PI / 8;
 
-game.SpriteController = Object.extend({
+game.DirectionSpriteController = Object.extend({
 	
 	//this object can handle sprites according to the angle between the entity and the mouse
 	//needs to be notified when an entity changes position through 'notifyEntityPositionChange'
@@ -27,10 +27,10 @@ game.SpriteController = Object.extend({
 	
 	notifyEntityPositionChange : function(){
 		//invokes updateSprite simulating a mouse event
-		var offset = me.game.viewport.localToWorld(0,0);
+		this.screenOffset = me.game.viewport.localToWorld(0,0);
 		this.updateSprite({
-			gameWorldX: me.input.mouse.pos.x + offset.x,
-			gameWorldY: me.input.mouse.pos.y + offset.y
+			gameWorldX: me.input.mouse.pos.x + this.screenOffset.x,
+			gameWorldY: me.input.mouse.pos.y + this.screenOffset.y
 		});
 	},
 
@@ -44,9 +44,7 @@ game.SpriteController = Object.extend({
 
 		if(this.lastDirectionIndex != this.directionIndex){
 			this.lastDirectionIndex = this.directionIndex;
-			this.entity.renderable.setCurrentAnimation(this.directionIndex);
-			//console.log("set" + this.directionIndex);
-			
+			this.entity.setDirection(this.directionIndex);
 		}
 		
 	},

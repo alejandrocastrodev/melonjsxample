@@ -7,7 +7,6 @@ game.PlayScreen = me.ScreenObject.extend({
 	// constructor
 	init : function() {
 		// pass true to the parent constructor
-		// as we draw our progress bar in the draw function
 		this.parent(true);
 	},
 
@@ -26,7 +25,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		var examovecontroller = new game.ExaMoveController();
 
 		var player = me.entityPool.newInstanceOf('mainPlayer',10, 10);
-		player.setController(examovecontroller);
+		player.setMoveController(examovecontroller);
 		
 		var directionKeyController = new game.DirectionKeysController();
 		directionKeyController.addListener(examovecontroller);
@@ -41,8 +40,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		
 		var backgrounds = new me.ObjectContainer();
 		backgrounds.addChild(blackBackground);
-				
-		
+
+
 		me.game.world.addChild(entities);
 		me.game.world.addChild(backgrounds);
 		
@@ -63,7 +62,6 @@ game.PlayScreen = me.ScreenObject.extend({
 	
 	update : function(dt) {
 		dt = dt || 1;
-		//console.log('actualizando: ' + dt);
 		return true;
 	}
 });
