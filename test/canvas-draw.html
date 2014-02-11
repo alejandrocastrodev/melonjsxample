@@ -1,0 +1,113 @@
+<body>
+
+	<p>Test canvas draw methods performance</p>
+	<canvas id="canvas-test" height="200" width="600"style="background-color: grey;">
+	</canvas>
+	<p>By primitive filRect: <span id="byprimitive">non-testing</span></p>
+	<p>By points of path: <span id="bypath">non-testing</span></p>
+	<p>iteration: <span id="iteration">0</span></p>
+	<input type="button" onclick="javascript:test();" value="Test" />
+
+</body>
+
+<style>
+* {
+	margin: auto
+}
+
+body {
+	width: 600px;
+	background-color: black;
+}
+
+p {
+	background-color: white;
+	padding: 4px;
+}
+
+span {
+	border: 1px solid black;
+	padding: 2px;
+}
+</style>
+
+<script>
+var amount = 10000;
+var context = document.getElementById("canvas-test").getContext("2d");
+context.fillStyle = "white";
+context.strokeStyle = "black";
+
+var currentTime, deltaTime, prompt, iteration, tested, currentXRect, tempMaxRectPoint,
+canvasMargin = 0,
+topMargin = 10,
+rectSide = 10,
+rectAmount = 10,
+rectMargin = 5,
+maxRectPoint = (rectSide + rectMargin) * rectAmount;
+
+function test() {
+	testFunction("bypath");
+	topMargin = 30,
+	
+	testFunction("byprimitive");
+}
+
+function testFunction(callback) {
+	prompt = document.getElementById(callback);
+	prompt.style.background = "red";
+	prompt.innerHTML = "testing";
+	currenTime = new Date().getTime();
+	tested = functions[callback];
+
+	for (iteration = 0; iteration < amount; iteration++) {
+		tested();
+	}
+
+	deltaTime = new Date().getTime() - currenTime;
+
+	prompt.style.background = "green";
+	prompt.innerHTML = deltaTime;
+}
+
+functions = {
+	bypath : function() {
+		if (canvasMargin < 10) {
+			canvasMargin++;
+		} else {
+			canvasMargin = 0
+		}
+		currentXRect = canvasMargin;
+		tempMaxRectPoint = currentXRect + maxRectPoint;
+		while (currentXRect < tempMaxRectPoint) {
+			context.fillRect(currentXRect, topMargin, rectSide, rectSide);
+			context.strokeRect(currentXRect, topMargin, rectSide, rectSide);
+			currentXRect += rectMargin + rectSide;
+		}
+	},
+
+	byprimitive : function() {
+		if (canvasMargin < 10) {
+			canvasMargin++;
+		} else {
+			canvasMargin = 0
+		}
+		currentXRect = canvasMargin;
+		tempMaxRectPoint = currentXRect + maxRectPoint;
+		context.beginPath();
+		while (currentXRect < tempMaxRectPoint) {
+			context.moveTo(currentXRect, topMargin);
+			context.lineTo(currentXRect, topMargin + rectSide);
+			context.lineTo(currentXRect + rectSide, topMargin + rectSide);
+			context.lineTo(currentXRect + rectSide, topMargin);
+			context.lineTo(currentXRect, topMargin);
+
+			currentXRect += rectMargin + rectSide;
+		}
+		context.closePath();
+
+		context.fill();
+		context.stroke();
+		document.getElementById("iteration").innerHTML = iteration;
+	}
+};
+</script>

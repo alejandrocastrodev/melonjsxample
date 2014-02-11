@@ -1,14 +1,14 @@
 game.TitleScreen = me.ScreenObject.extend({
-	
+
 	/* action to perform on state change */
-	onResetEvent: function() {	
+	onResetEvent: function() {
 	  // TODO
-      console.log('title - onResetEvent'); 
-	},	
-	
+      console.log('title - onResetEvent');
+	},
+
 	/* action to perform when leaving this screen (state change) */
 	onDestroyEvent: function() {
 	  // TODO
-      console.log('title - onDestroyEvent'); 
+      console.log('title - onDestroyEvent');
 	}
 });
