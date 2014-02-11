@@ -1,12 +1,41 @@
+<!DOCTYPE html>
 <body>
 
 	<p>Test canvas draw methods performance</p>
-	<canvas id="canvas-test" height="200" width="600"style="background-color: grey;">
+	<canvas id="canvas-test" height="100" width="600" style="background-color: grey;">
 	</canvas>
-	<p>By primitive filRect: <span id="byprimitive">non-testing</span></p>
-	<p>By points of path: <span id="bypath">non-testing</span></p>
-	<p>iteration: <span id="iteration">0</span></p>
-	<input type="button" onclick="javascript:test();" value="Test" />
+	
+	<table id="testing-table">
+		<tr><td>By primitive filRect: </td><td><span id="byprimitive">non-testing</span></td></tr>
+		<tr><td>By points of path:    </td><td><span id="bypath">non-testing</span></td></tr>
+	</table>
+	<input type="button" id="run" onclick="javascript:test();" value="Test" />
+
+	<div id="testing">
+	<table>
+
+		<tr><th>OS       </th><th>Browser</th><th>Way     </th><th>Time</th></tr>
+
+		<tr><td>Windows 7 </td><td>Chrome  </td><td>FilRect </td><td class="red"  >484 </td></tr>
+		<tr><td>Windows 7 </td><td>Chrome  </td><td>DrawPath</td><td class="green">465 </td></tr>
+		<tr><td>Windows Xp</td><td>Chrome  </td><td>FilRect </td><td class="red"  >673 </td></tr>
+		<tr><td>Windows Xp</td><td>Chrome  </td><td>DrawPath</td><td class="green">648 </td></tr>
+		<tr><td>Ubuntu    </td><td>Chrome  </td><td>FilRect </td><td class="red"  >--- </td></tr>
+		<tr><td>Ubuntu    </td><td>Chrome  </td><td>DrawPath</td><td class="green">--- </td></tr>
+		
+		<tr><td>Windows 7 </td><td>Firefox </td><td>FilRect </td><td class="red"  >485 </td></tr>
+		<tr><td>Windows 7 </td><td>Firefox </td><td>DrawPath</td><td class="green">376 </td></tr>
+		<tr><td>Windows Xp</td><td>Firefox </td><td>FilRect </td><td class="red"  >645 </td></tr>
+		<tr><td>Windows Xp</td><td>Firefox </td><td>DrawPath</td><td class="green">506 </td></tr>
+		<tr><td>Ubuntu    </td><td>Firefox </td><td>FilRect </td><td class="red"  >--- </td></tr>
+		<tr><td>Ubuntu    </td><td>Firefox </td><td>DrawPath</td><td class="green">--- </td></tr>
+	</table>
+	</div>
+	
+	<div id="footer">
+		
+	</div>
+		
 
 </body>
 
@@ -16,6 +45,7 @@
 }
 
 body {
+	margin-top: 5px;
 	width: 600px;
 	background-color: black;
 }
@@ -25,10 +55,48 @@ p {
 	padding: 4px;
 }
 
-span {
-	border: 1px solid black;
-	padding: 2px;
+
+#testing-table{
+	padding: 5px;
+	background-color: #FFF;
+	width: 600px;
 }
+
+#testing-table span{
+	padding: 2px;
+	width: 100px;
+	background-color: red;
+	border: 1px solid black;
+	float: left;
+	text-align: center;
+}
+
+#testing{
+	margin: 50px auto;
+	background-color: #FFF;
+}
+
+#testing th, #testing td{
+	border: 1px solid black;
+	width: 145px;
+	text-align: center;
+}
+
+#canvas-test{
+	margin-top: 5px;
+}
+
+#run{
+	margin-top: 10px;
+}
+
+.red{
+	background-color: red;
+}
+.green{
+	background-color: green;
+}
+
 </style>
 
 <script>
@@ -46,10 +114,11 @@ rectMargin = 5,
 maxRectPoint = (rectSide + rectMargin) * rectAmount;
 
 function test() {
-	testFunction("bypath");
-	topMargin = 30,
 	
+	testFunction("bypath");
+	topMargin = 30;
 	testFunction("byprimitive");
+	
 }
 
 function testFunction(callback) {
@@ -107,7 +176,7 @@ functions = {
 
 		context.fill();
 		context.stroke();
-		document.getElementById("iteration").innerHTML = iteration;
+		
 	}
 };
 </script>
