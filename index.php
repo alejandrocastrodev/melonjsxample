@@ -23,7 +23,8 @@
 
   <script type="text/javascript" src="scr/screens/title.js"></script>
   <script type="text/javascript" src="scr/screens/play.js"></script>  
-  <script type="text/javascript" src="scr/screens/loader.js"></script>  
+  <script type="text/javascript" src="scr/screens/loadingscreen.js"></script>  
+  <script type="text/javascript" src="scr/screens/loadingbar.js"></script>  
   
   <script type="text/javascript" src="scr/components/directionkeyscontroller.js"></script>
   <script type="text/javascript" src="scr/components/imovecontroller.js"></script>

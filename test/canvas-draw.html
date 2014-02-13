@@ -16,19 +16,19 @@
 
 		<tr><th>OS       </th><th>Browser</th><th>Way     </th><th>Time</th></tr>
 
-		<tr><td>Windows 7 </td><td>Chrome  </td><td>FilRect </td><td class="red"  >484 </td></tr>
-		<tr><td>Windows 7 </td><td>Chrome  </td><td>DrawPath</td><td class="green">465 </td></tr>
-		<tr><td>Windows Xp</td><td>Chrome  </td><td>FilRect </td><td class="red"  >673 </td></tr>
-		<tr><td>Windows Xp</td><td>Chrome  </td><td>DrawPath</td><td class="green">648 </td></tr>
-		<tr><td>Ubuntu    </td><td>Chrome  </td><td>FilRect </td><td class="red"  >--- </td></tr>
-		<tr><td>Ubuntu    </td><td>Chrome  </td><td>DrawPath</td><td class="green">--- </td></tr>
+		<tr><td>Windows 7 </td><td>Chrome  </td><td>DrawPath </td><td class="red"  >484 </td></tr>
+		<tr><td>Windows 7 </td><td>Chrome  </td><td>FilRect  </td><td class="green">465 </td></tr>
+		<tr><td>Windows Xp</td><td>Chrome  </td><td>DrawPath </td><td class="red"  >673 </td></tr>
+		<tr><td>Windows Xp</td><td>Chrome  </td><td>FilRect  </td><td class="green">648 </td></tr>
+		<tr><td>Ubuntu    </td><td>Chrome  </td><td>DrawPath </td><td class="red"  >469 </td></tr>
+		<tr><td>Ubuntu    </td><td>Chrome  </td><td>FilRect  </td><td class="green">393 </td></tr>
 		
-		<tr><td>Windows 7 </td><td>Firefox </td><td>FilRect </td><td class="red"  >485 </td></tr>
-		<tr><td>Windows 7 </td><td>Firefox </td><td>DrawPath</td><td class="green">376 </td></tr>
-		<tr><td>Windows Xp</td><td>Firefox </td><td>FilRect </td><td class="red"  >645 </td></tr>
-		<tr><td>Windows Xp</td><td>Firefox </td><td>DrawPath</td><td class="green">506 </td></tr>
-		<tr><td>Ubuntu    </td><td>Firefox </td><td>FilRect </td><td class="red"  >--- </td></tr>
-		<tr><td>Ubuntu    </td><td>Firefox </td><td>DrawPath</td><td class="green">--- </td></tr>
+		<tr><td>Windows 7 </td><td>Firefox </td><td>DrawPath </td><td class="red"  >485 </td></tr>
+		<tr><td>Windows 7 </td><td>Firefox </td><td>FilRect  </td><td class="green">376 </td></tr>
+		<tr><td>Windows Xp</td><td>Firefox </td><td>DrawPath </td><td class="red"  >645 </td></tr>
+		<tr><td>Windows Xp</td><td>Firefox </td><td>FilRect  </td><td class="green">506 </td></tr>
+		<tr><td>Ubuntu    </td><td>Firefox </td><td>DrawPath </td><td class="green">853 </td></tr>
+		<tr><td>Ubuntu    </td><td>Firefox </td><td>FilRect  </td><td class="red"  >5247</td></tr>
 	</table>
 	</div>
 	
@@ -117,6 +117,7 @@ function test() {
 	
 	testFunction("bypath");
 	topMargin = 30;
+	canvasMargin = 0;
 	testFunction("byprimitive");
 	
 }
@@ -139,7 +140,7 @@ function testFunction(callback) {
 }
 
 functions = {
-	bypath : function() {
+	byprimitive : function() {
 		if (canvasMargin < 10) {
 			canvasMargin++;
 		} else {
@@ -154,7 +155,7 @@ functions = {
 		}
 	},
 
-	byprimitive : function() {
+	bypath : function() {
 		if (canvasMargin < 10) {
 			canvasMargin++;
 		} else {
@@ -164,12 +165,7 @@ functions = {
 		tempMaxRectPoint = currentXRect + maxRectPoint;
 		context.beginPath();
 		while (currentXRect < tempMaxRectPoint) {
-			context.moveTo(currentXRect, topMargin);
-			context.lineTo(currentXRect, topMargin + rectSide);
-			context.lineTo(currentXRect + rectSide, topMargin + rectSide);
-			context.lineTo(currentXRect + rectSide, topMargin);
-			context.lineTo(currentXRect, topMargin);
-
+			context.rect(currentXRect, topMargin, rectSide, rectSide);
 			currentXRect += rectMargin + rectSide;
 		}
 		context.closePath();

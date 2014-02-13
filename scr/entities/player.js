@@ -23,8 +23,6 @@ game.PlayerEntity = me.ObjectEntity.extend({
 			this.renderable.addAnimation (sprite + "-move-kind",   this.range(frame + 2, 4), 100);
 			this.renderable.addAnimation (sprite + "-move-shoot",  this.range(frame + 6, 4), 100);
 		}
-		
-		
 
 		this.direction = 0; // 0-7
 		this.moving = "stop"; // move
@@ -50,8 +48,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 	    for (var i = 0; i < amount; i++) {
 	    	nrange[i] = i + start;
 	    }
-	    return nrange;
-	    
+	    return nrange;	    
 	},
 	
 	updateState : function(){
@@ -103,7 +100,5 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
 	draw : function(context) {
 		this.parent(context);
-		context.fillStyle = 'green';
-		context.fillRect(this.pos.x, this.pos.y, 10, 10);
 	}
 });
