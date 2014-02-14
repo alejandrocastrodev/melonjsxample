@@ -15,8 +15,9 @@ body {
 
 #MelonJSxample{	
   display: inline-block;
-  background-color: green;  
-  margin: auto 0px;
+  background-color: none;
+  /*fix bootom overflow*/
+  margin: 0px auto -4px auto;  
 }
 
 

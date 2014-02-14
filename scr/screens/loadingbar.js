@@ -4,7 +4,7 @@ game.LoadingBar = Object.extend({
 		this.horizontalMargin = 50;
 		this.barWidth = me.video.getWidth() - this.horizontalMargin * 2;
 		this.rectMargin = 5;
-		this.rectAmount = 40;
+		this.rectAmount = 60;
 		this.rectWidth = Math.floor((this.barWidth / this.rectAmount)- this.rectMargin);
 
 		// barWidth is recalculated due to rounding 'rectWidth'

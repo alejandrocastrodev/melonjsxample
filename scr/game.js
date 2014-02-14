@@ -13,7 +13,7 @@ var game = {
 	onload : function() {
 
 		// Initialize the video.
-		if (!me.video.init("MelonJSxample", 600, 400, true, false, true)) {
+		if (!me.video.init("MelonJSxample", 800, 600, true, false, true)) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}

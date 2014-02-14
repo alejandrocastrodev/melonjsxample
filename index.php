@@ -25,6 +25,7 @@
   <script type="text/javascript" src="scr/screens/play.js"></script>  
   <script type="text/javascript" src="scr/screens/loadingscreen.js"></script>  
   <script type="text/javascript" src="scr/screens/loadingbar.js"></script>  
+  <script type="text/javascript" src="scr/screens/logo.js"></script>  
   
   <script type="text/javascript" src="scr/components/directionkeyscontroller.js"></script>
   <script type="text/javascript" src="scr/components/imovecontroller.js"></script>
@@ -45,7 +46,40 @@
 
   <h2>MelonJS's Example</h2>
   <div id="MelonJSxample" oncontextmenu="return false;"></div>  	
-
+  <br/>
+  <button onclick="goFullscreen('MelonJSxample'); return false">Click Me To Go Fullscreen! (For real)</button>
+  
+  <style type="text/css">
+  #MelonJSxample:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+  }
+  #MelonJSxample:-moz-full-screen {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+  <script type="text/javascript">
+  function goFullscreen(id) {
+    // Get the element that we want to take into fullscreen mode
+    var element = document.getElementById(id);
+    
+    // These function will not exist in the browsers that don't support fullscreen mode yet, 
+    // so we'll have to check to see if they're available before calling them.
+    
+    if (element.mozRequestFullScreen) {
+      // This is how to go into fullscren mode in Firefox
+      // Note the "moz" prefix, which is short for Mozilla.
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullScreen) {
+      // This is how to go into fullscreen mode in Chrome and Safari
+      // Both of those browsers are based on the Webkit project, hence the same prefix.
+      element.webkitRequestFullScreen();
+   }
+   // Hooray, now we're in fullscreen mode!
+  }
+</script>
+  
   <p>It is a simple example of MelonJS game framework.</p>
   
 

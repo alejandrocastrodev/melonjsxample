@@ -4,9 +4,11 @@ game.LoadingScreen = me.ScreenObject.extend({
 		this.parent(true);
 		
 		this.loadingBar = new game.LoadingBar();
-		this.initialDraw(me.video.getScreenContext());
+		this.logo = new game.Logo();
 		
 		me.loader.onProgress = this.onProgressUpdate.bind(this);
+		this.initialDraw(me.video.getScreenContext());
+		
 	},
 
 	onProgressUpdate : function(progress) {
@@ -26,6 +28,7 @@ game.LoadingScreen = me.ScreenObject.extend({
 	initialDraw: function(context) {
 		me.video.clearSurface(context, "black");
 		this.loadingBar.initialDraw(context);
+		this.logo.initialDraw(context);
 	},
 
 	draw : function(context) {
